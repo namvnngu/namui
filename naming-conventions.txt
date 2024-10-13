@@ -1,0 +1,6 @@
+- kebab-case:
+  - folder,
+  - hooks/utils/other JS or TS files.
+
+- PascalCase:
+  - React component files.
