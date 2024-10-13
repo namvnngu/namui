@@ -1,6 +1,26 @@
-- kebab-case:
-  - folder,
-  - hooks/utils/other JS or TS files.
+- camelCase:
+  - variables,
+  - functions,
+  - object keys,
+  - method names in classes.
 
 - PascalCase:
-  - React component files.
+  - types,
+  - classes,
+  - interfaces,
+  - constructor functions,
+  - component files,
+  - component test files,
+  - component style files,
+  - component stories files,
+  - component functions/classes,
+
+- kebab-case:
+  - files,
+  - folders,
+  - URL slugs,
+  - CSS classes.
+
+- UPPER_CASE_SNAKE_CASE
+  - constants,
+  - environment variables.
