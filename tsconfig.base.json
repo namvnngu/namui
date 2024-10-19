@@ -11,6 +11,11 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-    "lib": ["es2022", "dom", "dom.iterable"]
+    "module": "preserve",
+    "noEmit": true,
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "paths": {
+      "@react/*": ["./packages/react/*"]
+    }
   }
 }
