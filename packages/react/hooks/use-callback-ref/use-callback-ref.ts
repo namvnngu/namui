@@ -8,7 +8,7 @@ import React from "react";
  * @param callback - The callback function.
  * @returns A ref to the passed callback function.
  */
-// biome-ignore lint/suspicious/noExplicitAny: accept any types of function.
+// biome-ignore lint/suspicious/noExplicitAny: accept any function arguments
 function useCallbackRef<T extends (...args: any[]) => any>(
   callback: T | undefined,
 ): T {
