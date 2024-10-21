@@ -1,9 +1,9 @@
 import React from "react";
 
 /**
- * A hook that creates a ref on a passed callback function
- * to avoid re-renders triggered by props or re-executing
- * effects triggered by dependency differences.
+ * A hook that creates a ref on a callback function to avoid re-renders
+ * triggered by props, or avoid re-executing effects triggered by dependency
+ * differences.
  *
  * @param callback - A callback function.
  * @returns A ref to the passed callback function.
