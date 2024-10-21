@@ -16,21 +16,21 @@ function useTimeout<TCallback extends (...args: any[]) => void>(
   delayInMs: number,
   startOnMount = true,
 ) {
-  const timeoutRef = React.useRef(-1);
+  const timeoutRef = React.useRef<number | undefined>(undefined);
   const startOnMountRef = React.useRef(startOnMount);
 
   const start = useCallbackRef((...args) => {
-    if (timeoutRef.current > 0) return;
+    if (timeoutRef.current !== undefined) return;
     timeoutRef.current = window.setTimeout(() => {
       callback(...args);
-      timeoutRef.current = -1;
+      timeoutRef.current = undefined;
     }, delayInMs);
   }) as unknown as TCallback;
 
   const cancel = useCallbackRef(() => {
-    if (timeoutRef.current < 0) return;
+    if (timeoutRef.current === undefined) return;
     window.clearTimeout(timeoutRef.current);
-    timeoutRef.current = -1;
+    timeoutRef.current = undefined;
   });
 
   React.useEffect(() => {
