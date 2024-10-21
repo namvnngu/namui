@@ -5,7 +5,7 @@ import React from "react";
  * triggered by props, or avoid re-executing effects triggered by dependency
  * differences.
  *
- * @param callback - A callback function.
+ * @param callback - The callback function.
  * @returns A ref to the passed callback function.
  */
 // biome-ignore lint/suspicious/noExplicitAny: accept any types of function.
