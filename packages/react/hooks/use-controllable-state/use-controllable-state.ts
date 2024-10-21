@@ -10,6 +10,14 @@ type Params<T> = {
 
 type StateSetter<T> = (currentValue?: T) => T;
 
+/**
+ * A hook that manages the state of both controlled and uncontrolled component.
+ *
+ * @param prop - A value for the controlled state.
+ * @param initialProp - An initial value for the uncontrolled state.
+ * @param onChange - A callback fired when the controlled state is changed.
+ * @returns A state and a state setter.
+ */
 function useControllableState<T>({ prop, initialProp, onChange }: Params<T>) {
   const [uncontrolledProp, setUncontrolledProp] = useUncontrolledState({
     initialProp,
