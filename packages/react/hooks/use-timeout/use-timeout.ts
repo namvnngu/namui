@@ -2,6 +2,10 @@ import React from "react";
 
 import { useCallbackRef } from "@react/hooks/use-callback-ref";
 
+// The timeout callback function will be executed immediately
+// when the timoue delay is larger than 2,147,483,647 ms (about 24.8 days).
+const MAXIMUM_DELAY_IN_MS = 2147483647;
+
 /**
  * A hook that calls a callback function in the given timeout.
  *
@@ -17,14 +21,20 @@ function useTimeout<TCallback extends (...args: any[]) => void>(
   startOnMount = true,
 ) {
   const timeoutRef = React.useRef<number | undefined>(undefined);
+  const delayInMsRef = React.useRef(delayInMs);
   const startOnMountRef = React.useRef(startOnMount);
 
   const start = useCallbackRef((...args) => {
     if (timeoutRef.current !== undefined) return;
-    timeoutRef.current = window.setTimeout(() => {
-      callback(...args);
-      timeoutRef.current = undefined;
-    }, delayInMs);
+    timeoutRef.current = window.setTimeout(
+      () => {
+        delayInMsRef.current -= MAXIMUM_DELAY_IN_MS;
+        timeoutRef.current = undefined;
+        if (delayInMsRef.current <= 0) callback(...args);
+        else start(...args);
+      },
+      Math.min(MAXIMUM_DELAY_IN_MS, delayInMsRef.current),
+    );
   }) as unknown as TCallback;
 
   const cancel = useCallbackRef(() => {
