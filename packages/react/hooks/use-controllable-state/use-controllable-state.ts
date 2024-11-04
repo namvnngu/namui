@@ -32,7 +32,9 @@ function useControllableState<T>({ prop, initialProp, onChange }: Params<T>) {
         const setter = nextValue as StateSetter<T>;
         const value =
           typeof nextValue === "function" ? setter(prop) : nextValue;
-        if (value !== prop) onChange?.(value as T);
+        if (value !== prop) {
+          onChange?.(value as T);
+        }
       } else {
         setUncontrolledProp(nextValue);
       }

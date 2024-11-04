@@ -10,7 +10,24 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "style": {
+        "useBlockStatements": {
+          "level": "error",
+          "fix": "safe"
+        },
+        "useNamingConvention": {
+          "level": "error",
+          "fix": "safe",
+          "options": {}
+        },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case"]
+          }
+        }
+      }
     }
   },
   "formatter": {

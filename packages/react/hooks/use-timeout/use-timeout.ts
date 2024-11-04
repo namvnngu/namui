@@ -15,8 +15,8 @@ const MAXIMUM_DELAY_IN_MS = 2147483647;
  * @returns A `start` function and a `cancel` function to start and cancel the timer respectively.
  */
 // biome-ignore lint/suspicious/noExplicitAny: accept any function arguments
-function useTimeout<TCallback extends (...args: any[]) => void>(
-  callback: TCallback,
+function useTimeout<T extends (...args: any[]) => void>(
+  callback: T,
   delayInMs: number,
   startOnMount = true,
 ) {
@@ -25,26 +25,35 @@ function useTimeout<TCallback extends (...args: any[]) => void>(
   const startOnMountRef = React.useRef(startOnMount);
 
   const start = useCallbackRef((...args) => {
-    if (timeoutRef.current !== undefined) return;
+    if (timeoutRef.current !== undefined) {
+      return;
+    }
     timeoutRef.current = window.setTimeout(
       () => {
         delayInMsRef.current -= MAXIMUM_DELAY_IN_MS;
         timeoutRef.current = undefined;
-        if (delayInMsRef.current <= 0) callback(...args);
-        else start(...args);
+        if (delayInMsRef.current <= 0) {
+          callback(...args);
+        } else {
+          start(...args);
+        }
       },
       Math.min(MAXIMUM_DELAY_IN_MS, delayInMsRef.current),
     );
-  }) as unknown as TCallback;
+  }) as unknown as T;
 
   const cancel = useCallbackRef(() => {
-    if (timeoutRef.current === undefined) return;
+    if (timeoutRef.current === undefined) {
+      return;
+    }
     window.clearTimeout(timeoutRef.current);
     timeoutRef.current = undefined;
   });
 
   React.useEffect(() => {
-    if (startOnMountRef.current) start();
+    if (startOnMountRef.current) {
+      start();
+    }
     return cancel;
   }, [start, cancel]);
 
