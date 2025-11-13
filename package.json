@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemastore.org/package.json",
+  "name": "namui",
+  "version": "0.0.1-alpha.1",
+  "description": "Nam's UI Kit",
+  "license": "UNLICENSE",
+  "author": "Viet Nam Nguyen",
+  "homepage": "https://github.com/namvnngu/namui",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/namvnngu/namui"
+  },
+  "bugs": {
+    "url": "https://github.com/namvnngu/namui/issues"
+  },
+  "scripts": {
+  },
+  "packageManager": "pnpm@10.18.2"
+}
